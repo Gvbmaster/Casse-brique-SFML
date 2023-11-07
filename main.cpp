@@ -1,22 +1,23 @@
 #include <SFML/Graphics.hpp>
+#include "GameObject.h"
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(500.f);
-    shape.setFillColor(sf::Color::Green);
+int main() {
+    sf::RenderWindow window(sf::VideoMode(800, 600), "GameObject Test");
+    window.setFramerateLimit(60);
 
-    while (window.isOpen())
-    {
+    GameObject Rect(100.f, 100.f, 50, 50);
+    GameObject Circle(200.f, 200.f, 50, 50);
+
+    while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
+            }
         }
 
         window.clear();
-        window.draw(shape);
+        window.draw(Rect.getShape());
         window.display();
     }
 
