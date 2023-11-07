@@ -6,7 +6,7 @@ int main() {
     window.setFramerateLimit(60);
 
     GameObject Rect(100.f, 100.f, 50, 50);
-    GameObject Circle(200.f, 200.f, 50, 50);
+    GameObject Circle(200.f, 200.f, 100);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -17,6 +17,7 @@ int main() {
         }
 
         window.clear();
+        window.draw(Circle.getShape());
         window.draw(Rect.getShape());
         window.display();
     }

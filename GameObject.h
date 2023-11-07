@@ -10,7 +10,8 @@ public:
 
 	void setPosition(float m_x, float m_y);
 	void setSize(int m_width, int m_height);
-	void setShape();
+	void setShapeRect();
+	void setShapeCircle();
 	const sf::Shape& getShape();
 
 private:
@@ -18,6 +19,7 @@ private:
 	float m_y;
 	float m_maxX;
 	float m_maxY;
+	float m_radius;
 	int m_width;
 	int m_height;
 	sf::Shape* m_shape;
