@@ -12,6 +12,7 @@ public:
 	void setSize(int m_width, int m_height);
 	void setShapeRect();
 	void setShapeCircle();
+	void setRadius(float m_radius);
 	const sf::Shape& getShape();
 
 private:

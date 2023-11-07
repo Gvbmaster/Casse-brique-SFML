@@ -7,7 +7,7 @@ GameObject::GameObject(float m_x, float m_y, float m_width, float m_height){
 }
 
 GameObject::GameObject(float m_x, float m_y, float m_radius) {
-	this->m_radius = m_radius;
+	GameObject::setRadius(m_radius);
 	GameObject::setPosition(m_x, m_y);
 	GameObject::setShapeCircle();
 }
@@ -15,7 +15,10 @@ GameObject::GameObject(float m_x, float m_y, float m_radius) {
 void GameObject::setSize(int m_width, int m_height) {
 	this->m_width = m_width;
 	this->m_height = m_height;
+};
 
+void GameObject::setRadius(float m_radius) {
+	this->m_radius = m_radius;
 };
 
 void GameObject::setPosition(float m_x, float m_y) {
