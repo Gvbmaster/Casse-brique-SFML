@@ -55,7 +55,7 @@ const sf::Shape& GameObject::getShape() {
 };
 void GameObject::move(float deltaTime) {
 	float newX = this->m_x + deltaTime * this->m_speed;
-	float newY = this->m_y + deltaTime * this->m_speed;
+	float newY = this->m_y + deltaTime * 0;
 
 	setPosition(newX, newY);
 };

@@ -7,6 +7,7 @@ int main() {
     window.setFramerateLimit(60);
 
     GameObject Rect(100.f, 100.f, 50, 50, 0.f,75.f);
+    GameObject Rect2(300.f, 100.f, 50, 50, 0.f, 0.f);
     GameObject Circle(200.f, 200.f, 100,20.f);
 
     while (window.isOpen()) {
@@ -17,6 +18,7 @@ int main() {
         }
 
         Rect.collision(Circle);
+        Rect.collision(Rect2);
         Circle.collision(Rect);
         Rect.move(deltaTime);
         Circle.move(deltaTime);
@@ -24,6 +26,7 @@ int main() {
         window.clear();
         window.draw(Circle.getShape());
         window.draw(Rect.getShape());
+        window.draw(Rect2.getShape());
         window.display();
         deltaTime = clock.restart().asSeconds();
     }
