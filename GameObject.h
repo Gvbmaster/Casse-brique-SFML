@@ -16,6 +16,7 @@ public:
 	void setOrigin(float m_x, float m_y);
 	void move(float deltaTime);
 	void collision(GameObject& other);
+	void IsCollidingWithWindow();
 	const sf::Shape& getShape();
 
 private:
@@ -26,6 +27,7 @@ private:
 	float m_radius;
 	float m_angle;
 	float m_speed;
+	sf::Vector2f m_direction;
 	int m_width;
 	int m_height;
 	sf::Shape* m_shape;

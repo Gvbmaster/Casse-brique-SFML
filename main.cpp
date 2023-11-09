@@ -1,9 +1,11 @@
 #include "GameObject.h"
 
 int main() {
+    int SCREENWIDTH = 800;
+    int SCREENHEIGHT = 600;
     sf::Clock clock;
     float deltaTime = 0;
-    sf::RenderWindow window(sf::VideoMode(800, 600), "GameObject Test");
+    sf::RenderWindow window(sf::VideoMode(SCREENWIDTH, SCREENHEIGHT), "GameObject Test");
     window.setFramerateLimit(60);
 
     GameObject Rect(100.f, 100.f, 50, 50, 0.f,75.f);
