@@ -15,6 +15,7 @@ public:
 	void setRotation(float m_angle);
 	void setOrigin(float m_x, float m_y);
 	void move(float deltaTime);
+	void moveTestMouse(sf::Vector2i mousePosition);
 	void collision(GameObject& other);
 	void isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT);
 	const sf::Shape& getShape();

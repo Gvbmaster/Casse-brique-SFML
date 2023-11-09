@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include <iostream>
 
 int main() {
     int SCREENWIDTH = 800;
@@ -9,7 +10,7 @@ int main() {
     sf::Vector2u windowSize = window.getSize();
     window.setFramerateLimit(60);
 
-    GameObject Rect(100.f, 100.f, 50, 50, 0.f,600.f);
+    GameObject Rect(100.f, 100.f, 50, 50, 0.f,1.f);
     GameObject Rect2(300.f, 100.f, 50, 50, 0.f, 0.f);
     GameObject Circle(200.f, 200.f, 100,20.f);
 
@@ -19,12 +20,17 @@ int main() {
             if (event.type == sf::Event::Closed) {
             }
         }
+        //obtention de la position de la souris
+        sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+        //affichage de la collision avec le coté pour débugage
+        /*std::cout << "Collision à gauche : " << mousePosition.x << ", " << mousePosition.y << std::endl;*/
+
 
         Rect.collision(Circle);
         Rect.isCollidingWithWindow(SCREENWIDTH,SCREENHEIGHT);
         Rect.collision(Rect2);
         Circle.collision(Rect);
-        Rect.move(deltaTime);
+        Rect.moveTestMouse(mousePosition);
         Circle.move(deltaTime);
 
         window.clear();
