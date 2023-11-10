@@ -94,14 +94,54 @@ bool IsLineInside(int v1Min, int v1Max, int v2Min, int v2Max)
 	return IsInside(v1Min, v2Min, v2Max) || IsInside(v1Max, v2Min, v2Max);
 };
 
+//void GameObject::collision(GameObject& other) {
+//	if (IsLineInside(this->m_x, this->m_maxX, other.m_x, other.m_maxX)) {
+//		if (IsLineInside(this->m_y, this->m_maxY, other.m_y, other.m_maxY)) {
+//			this->m_direction = -m_direction;
+//			std::cout << "Collision faite "<< std::endl;
+//		}
+//	}
+//};
+
 void GameObject::collision(GameObject& other) {
-	if (IsLineInside(this->m_x, this->m_maxX, other.m_x, other.m_maxX)) {
-		if (IsLineInside(this->m_y, this->m_maxY, other.m_y, other.m_maxY)) {
-			this->m_direction = -m_direction;
-			std::cout << "Collision effectué "<< std::endl;
+	float dx = other.m_x - m_x;
+	float dy = other.m_y - m_y;
+
+	// Calculer la somme des demi-largeurs et demi-hauteurs
+	float combinedHalfWidth = (m_width + other.m_width) / 2.0f;
+	float combinedHalfHeight = (m_height + other.m_height) / 2.0f;
+
+	// Calculer la différence absolue entre les centres
+	float offsetX = std::abs(dx) - combinedHalfWidth;
+	float offsetY = std::abs(dy) - combinedHalfHeight;
+
+	// Vérifier s'il y a collision
+	if (offsetX < 0 && offsetY < 0) {
+
+		if (offsetX > offsetY) {
+			// Collision selon l'axe x
+			if (dx > 0) {
+				m_direction.x = -std::abs(m_direction.x);
+				std::cout << "Collision sur la gauche" << std::endl;
+			}
+			else {
+				m_direction.x = std::abs(m_direction.x);
+				std::cout << "Collision sur la droite" << std::endl;
+			}
+		}
+		else {
+			// Collision selon l'axe y
+			if (dy > 0) {
+				m_direction.y = -std::abs(m_direction.y);
+				std::cout << "Collision en haut" << std::endl;
+			}
+			else {
+				m_direction.y = std::abs(m_direction.y);
+				std::cout << "Collision en bas" << std::endl;
+			}
 		}
 	}
-};
+}
 
 void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
 	if (m_x < 0 || m_x + m_width > SCREENWIDTH) {
@@ -112,6 +152,24 @@ void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
 		this->m_direction.y = -m_direction.y;
 	}
 }
+
+bool GameObject::stillColliding(GameObject& other) {
+	float dx = other.m_x - m_x;
+	float dy = other.m_y - m_y;
+
+	float combinedHalfWidth = (m_width + other.m_width) / 2.0f;
+	float combinedHalfHeight = (m_height + other.m_height) / 2.0f;
+
+	float offsetX = std::abs(dx) - combinedHalfWidth;
+	float offsetY = std::abs(dy) - combinedHalfHeight;
+
+	return (offsetX < 0 && offsetY < 0);
+}
+
+void GameObject::setDirection(float m_directionX, float m_directionY) {
+	this->m_directionX = m_directionX;
+	this->m_directionY = m_directionY;
+};
 
 GameObject::~GameObject() {
 	delete m_shape;

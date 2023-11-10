@@ -10,10 +10,6 @@ int main() {
     sf::Vector2u windowSize = window.getSize();
     window.setFramerateLimit(60);
 
-    GameObject Rect(100.f, 100.f, 50, 50, 0.f,1.f);
-    GameObject Rect2(300.f, 100.f, 50, 50, 0.f, 0.f);
-    GameObject Circle(200.f, 200.f, 100,20.f);
-
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -26,17 +22,22 @@ int main() {
         /*std::cout << "Collision à gauche : " << mousePosition.x << ", " << mousePosition.y << std::endl;*/
 
 
-        Rect.collision(Circle);
-        Rect.isCollidingWithWindow(SCREENWIDTH,SCREENHEIGHT);
-        Rect.collision(Rect2);
-        Circle.collision(Rect);
-        Rect.moveTestMouse(mousePosition);
-        Circle.move(deltaTime);
+        //Rect.isCollidingWithWindow(SCREENWIDTH,SCREENHEIGHT);
+        /*Circle.collision(Rect);*/
+
+
+        /*Rect.setPosition(mousePosition.x, mousePosition.y);*/
+        /*if (Rect.stillColliding(Rect2)) {
+            std::cout << "Rect est toujours en collision avec Rect2" << std::endl;
+        }
+        else {
+            std::cout << "Rect n'est plus en collision avec Rect2" << std::endl;
+        }*/
+
+        //Rect.moveTestMouse(mousePosition);
+        /*Circle.move(deltaTime);*/
 
         window.clear();
-        window.draw(Circle.getShape());
-        window.draw(Rect.getShape());
-        window.draw(Rect2.getShape());
         window.display();
         deltaTime = clock.restart().asSeconds();
     }

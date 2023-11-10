@@ -18,6 +18,8 @@ public:
 	void moveTestMouse(sf::Vector2i mousePosition);
 	void collision(GameObject& other);
 	void isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT);
+	bool stillColliding(GameObject& other);
+	void setDirection(float m_directionX, float m_directionY);
 	const sf::Shape& getShape();
 
 private:
@@ -28,6 +30,8 @@ private:
 	float m_radius;
 	float m_angle;
 	float m_speed;
+	float m_directionX;
+	float m_directionY;
 
 	sf::Vector2f m_direction;
 	int m_width;
