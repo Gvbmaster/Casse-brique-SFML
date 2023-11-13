@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "Canon.h"
 #include <iostream>
 
 int main() {
@@ -6,39 +7,29 @@ int main() {
     int SCREENHEIGHT = 600;
     sf::Clock clock;
     float deltaTime = 0;
-    sf::RenderWindow window(sf::VideoMode(SCREENWIDTH, SCREENHEIGHT), "GameObject Test");
+    sf::RenderWindow window(sf::VideoMode(SCREENWIDTH, SCREENHEIGHT), "Test");
     sf::Vector2u windowSize = window.getSize();
+    Canon oCanon(375.f, 525.f, 100, 50, 0.f, 5.f);
     window.setFramerateLimit(60);
 
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
+                window.close();
             }
         }
-        //obtention de la position de la souris
+
+        // Obtention de la position de la souris
         sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-        //affichage de la collision avec le coté pour débugage
-        /*std::cout << "Collision à gauche : " << mousePosition.x << ", " << mousePosition.y << std::endl;*/
-
-
-        //Rect.isCollidingWithWindow(SCREENWIDTH,SCREENHEIGHT);
-        /*Circle.collision(Rect);*/
-
-
-        /*Rect.setPosition(mousePosition.x, mousePosition.y);*/
-        /*if (Rect.stillColliding(Rect2)) {
-            std::cout << "Rect est toujours en collision avec Rect2" << std::endl;
-        }
-        else {
-            std::cout << "Rect n'est plus en collision avec Rect2" << std::endl;
-        }*/
-
-        //Rect.moveTestMouse(mousePosition);
-        /*Circle.move(deltaTime);*/
+        oCanon.moveTowardsMouse(window);
 
         window.clear();
+
+        window.draw(oCanon.getShape());
+
         window.display();
+
         deltaTime = clock.restart().asSeconds();
     }
 

@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Mouse.hpp>
+#include <cmath>
 
 class GameObject
 {
@@ -19,10 +21,9 @@ public:
 	void collision(GameObject& other);
 	void isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT);
 	bool stillColliding(GameObject& other);
-	void setDirection(float m_directionX, float m_directionY);
 	const sf::Shape& getShape();
 
-private:
+protected:
 	float m_x;
 	float m_y;
 	float m_maxX;
@@ -33,9 +34,9 @@ private:
 	float m_directionX;
 	float m_directionY;
 
-	sf::Vector2f m_direction;
 	int m_width;
 	int m_height;
+	sf::Vector2f m_direction;
 	sf::Shape* m_shape;
 };
 

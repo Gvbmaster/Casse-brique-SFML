@@ -56,8 +56,8 @@ void GameObject::setOrigin(float m_x, float m_y) {
 };
 
 const sf::Shape& GameObject::getShape() {
-	return * m_shape;
-};
+	return *m_shape;
+}
 void GameObject::move(float deltaTime) {
 	float moveDistance = m_speed * deltaTime;
 	float newX = m_x + m_direction.x * moveDistance;
@@ -165,11 +165,6 @@ bool GameObject::stillColliding(GameObject& other) {
 
 	return (offsetX < 0 && offsetY < 0);
 }
-
-void GameObject::setDirection(float m_directionX, float m_directionY) {
-	this->m_directionX = m_directionX;
-	this->m_directionY = m_directionY;
-};
 
 GameObject::~GameObject() {
 	delete m_shape;
