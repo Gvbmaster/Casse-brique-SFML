@@ -84,7 +84,6 @@ void GameObject::collision(GameObject& other) {
 	if (offsetX < 0 && offsetY < 0) {
 
 		if (offsetX > offsetY) {
-			// Collision selon l'axe x
 			if (dx > 0) {
 				m_direction.x = -std::abs(m_direction.x);
 				std::cout << "Collision sur la gauche" << std::endl;
@@ -95,7 +94,6 @@ void GameObject::collision(GameObject& other) {
 			}
 		}
 		else {
-			// Collision selon l'axe y
 			if (dy > 0) {
 				m_direction.y = -std::abs(m_direction.y);
 				std::cout << "Collision en haut" << std::endl;
@@ -113,7 +111,10 @@ void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
 		this->m_direction.x = -m_direction.x;
 	}
 
-	if (m_y < 0 || m_y + m_height > SCREENHEIGHT) {
+	if (m_y < 0 ) {
+		this->m_direction.y = -m_direction.y;
+	}
+	if (m_y + m_height > SCREENHEIGHT) {
 		this->m_direction.y = -m_direction.y;
 	}
 }
