@@ -11,13 +11,13 @@ public:
 	~GameObject();
 
 	void setPosition(float m_x, float m_y);
+	sf::Vector2f getPosition() const;
 	void setSize(int m_width, int m_height);
 	void setRadius(float m_radius);
 	void setAngle(float m_angle);
 	void setRotation(float m_angle);
 	void setOrigin(float m_x, float m_y);
 	void move(float deltaTime);
-	void moveTestMouse(sf::Vector2i mousePosition);
 	void collision(GameObject& other);
 	void isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT);
 	bool stillColliding(GameObject& other);

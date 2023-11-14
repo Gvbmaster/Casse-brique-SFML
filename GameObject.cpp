@@ -42,6 +42,9 @@ void GameObject::setPosition(float m_x, float m_y) {
 	this->m_shape->setPosition(this->m_x, this->m_y);
 };
 
+sf::Vector2f GameObject::getPosition() const {
+	return sf::Vector2f(m_x, m_y);
+};
 void GameObject::setRotation(float m_angle) {
 	this->setAngle(m_angle);
 	this->m_shape->setRotation(m_angle);
@@ -64,44 +67,6 @@ void GameObject::move(float deltaTime) {
 	float newY = m_y + m_direction.y * moveDistance;
 	setPosition(newX, newY);
 };
-
-void GameObject::moveTestMouse(sf::Vector2i mousePosition) {
-	float moveDistance = m_speed;
-	float newX = m_x;
-	float newY = m_y;
-	if (mousePosition.x > m_x) {
-		newX = m_x + moveDistance;
-	}
-	else if (mousePosition.x < m_x) {
-		newX = m_x - moveDistance;
-	}
-	if (mousePosition.y > m_y) {
-		newY = m_y + moveDistance;
-	}
-	else if (mousePosition.y < m_y) {
-		newY = m_y - moveDistance;
-	}
-	setPosition(newX, newY);
-};
-
-bool IsInside(int v, int vMin, int vMax)
-{
-	return (v >= vMin) && (v <= vMax);
-};
-
-bool IsLineInside(int v1Min, int v1Max, int v2Min, int v2Max)
-{
-	return IsInside(v1Min, v2Min, v2Max) || IsInside(v1Max, v2Min, v2Max);
-};
-
-//void GameObject::collision(GameObject& other) {
-//	if (IsLineInside(this->m_x, this->m_maxX, other.m_x, other.m_maxX)) {
-//		if (IsLineInside(this->m_y, this->m_maxY, other.m_y, other.m_maxY)) {
-//			this->m_direction = -m_direction;
-//			std::cout << "Collision faite "<< std::endl;
-//		}
-//	}
-//};
 
 void GameObject::collision(GameObject& other) {
 	float dx = other.m_x - m_x;

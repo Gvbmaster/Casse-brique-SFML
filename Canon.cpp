@@ -36,3 +36,9 @@ void Canon::moveTowardsMouse(sf::RenderWindow& window) {
     setDirection(window);
     setOrigin(m_width/4, m_height/2);
 }
+
+void Canon::shoot(Ball& ball) {
+	ball.setPosition(getPosition().x, getPosition().y);
+
+	ball.setDirection(m_direction);
+}

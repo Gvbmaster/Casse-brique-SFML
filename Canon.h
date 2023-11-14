@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Ball.h"
 
 class Canon : public GameObject {
 public:
@@ -8,6 +9,6 @@ public:
 
     void setDirection(sf::RenderWindow& window);
     void moveTowardsMouse(sf::RenderWindow& window);
-    void shoot(sf::RenderWindow& window);
+    void shoot(Ball& ball);
 };
 
