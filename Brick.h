@@ -9,7 +9,9 @@ public:
     void resetHealth(int m_health);
 
     void takeDamage();
-
+    virtual void onCollisionEnter(GameObject* other) override;
+    virtual void onCollisionStay(GameObject* other) override;
+    virtual void onCollisionExit(GameObject* other) override;
 private:
     int m_health;
     float m_x;

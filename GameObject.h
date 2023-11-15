@@ -21,9 +21,10 @@ public:
 	void move(float deltaTime);
 	void collision(GameObject& other);
 	void isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT);
-	/*virtual void onCollisionEnter();
-	virtual void onCollisionStay();
-	virtual void onCollisionExit();*/
+	void addCollisionObject(GameObject* object);
+	virtual void onCollisionEnter(GameObject* other);
+	virtual void onCollisionStay(GameObject* other);
+	virtual void onCollisionExit(GameObject* other);
 
 	const sf::Shape& getShape();
 
@@ -42,5 +43,6 @@ protected:
 	int m_height;
 	sf::Vector2f m_direction;
 	sf::Shape* m_shape;
+	std::vector<GameObject*> collisionObjects;
 };
 

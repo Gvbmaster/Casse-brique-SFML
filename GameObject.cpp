@@ -120,6 +120,22 @@ void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
 	}
 }
 
+void GameObject::addCollisionObject(GameObject* object) {
+	collisionObjects.push_back(object);
+}
+
+void GameObject::onCollisionEnter(GameObject* other) {
+	std::cout << "Collision" << std::endl;
+}
+
+void GameObject::onCollisionStay(GameObject* other) {
+	std::cout << "Collision" << std::endl;
+}
+
+void GameObject::onCollisionExit(GameObject* other) {
+	std::cout << "Collision" << std::endl;
+}
+
 GameObject::~GameObject() {
 	delete m_shape;
 };
