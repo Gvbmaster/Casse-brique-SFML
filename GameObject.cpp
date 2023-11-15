@@ -120,19 +120,6 @@ void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
 	}
 }
 
-bool GameObject::stillColliding(GameObject& other) {
-	float dx = other.m_x - m_x;
-	float dy = other.m_y - m_y;
-
-	float combinedHalfWidth = (m_width + other.m_width) / 2.0f;
-	float combinedHalfHeight = (m_height + other.m_height) / 2.0f;
-
-	float offsetX = std::abs(dx) - combinedHalfWidth;
-	float offsetY = std::abs(dy) - combinedHalfHeight;
-
-	return (offsetX < 0 && offsetY < 0);
-}
-
 GameObject::~GameObject() {
 	delete m_shape;
 };

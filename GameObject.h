@@ -21,8 +21,11 @@ public:
 	void move(float deltaTime);
 	void collision(GameObject& other);
 	void isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT);
+	/*virtual void onCollisionEnter();
+	virtual void onCollisionStay();
+	virtual void onCollisionExit();*/
+
 	const sf::Shape& getShape();
-	bool stillColliding(GameObject& other);
 
 protected:
 	float m_x;
