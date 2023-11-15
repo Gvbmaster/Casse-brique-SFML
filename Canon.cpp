@@ -26,8 +26,6 @@ void Canon::setDirection(sf::RenderWindow& window) {
 	const float maxAngle = -10.0f;
 
 	if (angleDegrees >= minAngle && angleDegrees <= maxAngle) {
-
-		std::cout << angleDegrees << std::endl;
 		setRotation(angleDegrees);
 	}
 }

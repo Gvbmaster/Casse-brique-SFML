@@ -7,5 +7,4 @@ public:
 	~Ball();
 
 	void setDirection(sf::Vector2f direction);
-	sf::Vector2f getDirection() const;
 };

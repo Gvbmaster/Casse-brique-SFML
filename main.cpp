@@ -9,7 +9,7 @@ int main() {
     float deltaTime = 0;
     sf::RenderWindow window(sf::VideoMode(SCREENWIDTH, SCREENHEIGHT), "Test");
     sf::Vector2u windowSize = window.getSize();
-    Canon oCanon(375.f, 525.f, 100, 50, 0.f, 5.f);
+    Canon oCanon(SCREENWIDTH/2, 525.f, 100, 50, 0.f, 5.f);
     Ball oBall(0,0,10.f,300.f);
     window.setFramerateLimit(60);
 

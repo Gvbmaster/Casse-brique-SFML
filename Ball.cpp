@@ -12,8 +12,3 @@ void Ball::setDirection(sf::Vector2f direction)
 {
     m_direction = direction;
 }
-
-sf::Vector2f Ball::getDirection() const
-{
-    return m_direction;
-}
