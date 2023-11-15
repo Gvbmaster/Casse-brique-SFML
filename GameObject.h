@@ -17,11 +17,12 @@ public:
 	void setAngle(float m_angle);
 	void setRotation(float m_angle);
 	void setOrigin(float m_x, float m_y);
+	void getOrigin(float m_x, float m_y);
 	void move(float deltaTime);
 	void collision(GameObject& other);
 	void isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT);
-	bool stillColliding(GameObject& other);
 	const sf::Shape& getShape();
+	bool stillColliding(GameObject& other);
 
 protected:
 	float m_x;

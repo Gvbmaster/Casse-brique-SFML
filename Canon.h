@@ -9,6 +9,10 @@ public:
 
     void setDirection(sf::RenderWindow& window);
     void moveTowardsMouse(sf::RenderWindow& window);
+    bool isFiring() const;
     void shoot(Ball& ball);
+    void stopFiring();
+private:
+    bool Firing;
 };
 

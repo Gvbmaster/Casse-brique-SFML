@@ -45,6 +45,7 @@ void GameObject::setPosition(float m_x, float m_y) {
 sf::Vector2f GameObject::getPosition() const {
 	return sf::Vector2f(m_x, m_y);
 };
+
 void GameObject::setRotation(float m_angle) {
 	this->setAngle(m_angle);
 	this->m_shape->setRotation(m_angle);
@@ -58,9 +59,14 @@ void GameObject::setOrigin(float m_x, float m_y) {
 	this->m_shape->setOrigin(m_x, m_y);
 };
 
+void GameObject::getOrigin(float m_x, float m_y) {
+	this->m_shape->getOrigin();
+};
+
 const sf::Shape& GameObject::getShape() {
 	return *m_shape;
 }
+
 void GameObject::move(float deltaTime) {
 	float moveDistance = m_speed * deltaTime;
 	float newX = m_x + m_direction.x * moveDistance;
@@ -72,11 +78,9 @@ void GameObject::collision(GameObject& other) {
 	float dx = other.m_x - m_x;
 	float dy = other.m_y - m_y;
 
-	// Calculer la somme des demi-largeurs et demi-hauteurs
 	float combinedHalfWidth = (m_width + other.m_width) / 2.0f;
 	float combinedHalfHeight = (m_height + other.m_height) / 2.0f;
 
-	// Calculer la différence absolue entre les centres
 	float offsetX = std::abs(dx) - combinedHalfWidth;
 	float offsetY = std::abs(dy) - combinedHalfHeight;
 
@@ -112,9 +116,6 @@ void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
 	}
 
 	if (m_y < 0 ) {
-		this->m_direction.y = -m_direction.y;
-	}
-	if (m_y + m_height > SCREENHEIGHT) {
 		this->m_direction.y = -m_direction.y;
 	}
 }

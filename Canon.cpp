@@ -2,7 +2,7 @@
 #include <iostream>
 
 Canon::Canon(float m_x, float m_y, float m_width, float m_height, float m_angle, float m_speed)
-    : GameObject(m_x, m_y, m_width, m_height, m_angle, m_speed) {
+    : GameObject(m_x, m_y, m_width, m_height, m_angle, m_speed) , Firing(false) {
 }
 
 Canon::~Canon() {
@@ -35,8 +35,21 @@ void Canon::moveTowardsMouse(sf::RenderWindow& window) {
     setOrigin(m_width/4, m_height/2);
 }
 
-void Canon::shoot(Ball& ball) {
-	ball.setPosition(getPosition().x, getPosition().y);
+bool Canon::isFiring() const {
+	return Firing;
+}
 
-	ball.setDirection(m_direction);
+void Canon::shoot(Ball& ball) {
+	if (!Firing) {
+		sf::Vector2f cannonOrigin = getShape().getOrigin();
+		ball.setPosition(getPosition().x - cannonOrigin.x, getPosition().y - cannonOrigin.y);
+
+		ball.setDirection(m_direction);
+
+		Firing = true;
+	}
+}
+
+void Canon::stopFiring() {
+	Firing = false;
 }
