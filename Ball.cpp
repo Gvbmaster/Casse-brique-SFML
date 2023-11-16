@@ -14,13 +14,5 @@ void Ball::setDirection(sf::Vector2f direction)
 }
 
 void Ball::onCollisionEnter(GameObject* other) {
-    // Traitement spécifique lors de la collision avec un autre objet
-}
-
-void Ball::onCollisionStay(GameObject* other) {
-    // Traitement spécifique lors de la collision avec un autre objet
-}
-
-void Ball::onCollisionExit(GameObject* other) {
-    // Traitement spécifique lors de la collision avec un autre objet
+    bounce();
 }

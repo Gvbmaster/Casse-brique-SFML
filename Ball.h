@@ -8,6 +8,4 @@ public:
 
 	void setDirection(sf::Vector2f direction);
 	virtual void onCollisionEnter(GameObject* other) override;
-	virtual void onCollisionStay(GameObject* other) override;
-	virtual void onCollisionExit(GameObject* other) override;
 };

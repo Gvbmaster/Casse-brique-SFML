@@ -74,7 +74,7 @@ void GameObject::move(float deltaTime) {
 	setPosition(newX, newY);
 };
 
-void GameObject::collision(GameObject& other) {
+bool GameObject::checkCollision(GameObject& other) {
 	float dx = other.m_x - m_x;
 	float dy = other.m_y - m_y;
 
@@ -84,30 +84,39 @@ void GameObject::collision(GameObject& other) {
 	float offsetX = std::abs(dx) - combinedHalfWidth;
 	float offsetY = std::abs(dy) - combinedHalfHeight;
 
-	// Vérifier s'il y a collision
-	if (offsetX < 0 && offsetY < 0) {
+	bool collision = offsetX < 0 && offsetY < 0;
+	auto it = std::find(collidingObjects.begin(), collidingObjects.end(), &other);
+	bool alreadyColliding = it != collidingObjects.end();
 
-		if (offsetX > offsetY) {
-			if (dx > 0) {
-				m_direction.x = -std::abs(m_direction.x);
-				std::cout << "Collision sur la gauche" << std::endl;
-			}
-			else {
-				m_direction.x = std::abs(m_direction.x);
-				std::cout << "Collision sur la droite" << std::endl;
-			}
+	if (collision) 
+	{
+		if (alreadyColliding == false)
+		{
+			collidingObjects.push_back(&other);
+			onCollisionEnter(&other);
+			other.onCollisionEnter(this);
 		}
-		else {
-			if (dy > 0) {
-				m_direction.y = -std::abs(m_direction.y);
-				std::cout << "Collision en haut" << std::endl;
-			}
-			else {
-				m_direction.y = std::abs(m_direction.y);
-				std::cout << "Collision en bas" << std::endl;
-			}
+		else 
+		{
+			onCollisionStay(&other);
+			other.onCollisionStay(this);
 		}
 	}
+	else {
+		if (alreadyColliding) 
+		{
+			collidingObjects.erase(it);
+			onCollisionExit(&other);
+			other.onCollisionExit(this);
+		}
+	}
+
+	return collision;
+}
+
+
+void GameObject::bounce() {
+	m_direction.y = -m_direction.y;
 }
 
 void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
@@ -120,21 +129,18 @@ void GameObject::isCollidingWithWindow(int SCREENWIDTH, int SCREENHEIGHT) {
 	}
 }
 
-void GameObject::addCollisionObject(GameObject* object) {
-	collisionObjects.push_back(object);
-}
-
 void GameObject::onCollisionEnter(GameObject* other) {
-	std::cout << "Collision" << std::endl;
+	std::cout << "Collision avec " << typeid(*other).name() << " détectée." << std::endl;
 }
 
 void GameObject::onCollisionStay(GameObject* other) {
-	std::cout << "Collision" << std::endl;
+	std::cout << "Collision continue avec " << typeid(*other).name() << "." << std::endl;
 }
 
 void GameObject::onCollisionExit(GameObject* other) {
-	std::cout << "Collision" << std::endl;
+	std::cout << "Fin de la collision avec " << typeid(*other).name() << "." << std::endl;
 }
+
 
 GameObject::~GameObject() {
 	delete m_shape;
