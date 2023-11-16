@@ -70,6 +70,8 @@ void GameManager::update(float deltaTime) {
         if (brick->isDestroyed()) {
             bricks.erase(std::remove(bricks.begin(), bricks.end(), brick), bricks.end());
             delete brick;
+            std::cout << "Brique supprimee" << std::endl;
+            std::cout << "Il reste : " << bricks.size() << std::endl;
         }
     }
 }
