@@ -55,6 +55,9 @@ void GameManager::update(float deltaTime) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             oCanon.shoot(oBall);
         }
+        else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+			oCanon.shootRightClick(oBall);
+		}
     }
     else {
         if (oBall.getPosition().y > window.getSize().y) {

@@ -50,6 +50,30 @@ void Canon::shoot(Ball& ball) {
 	}
 }
 
+void Canon::shootRightClick(Ball& ball) {
+	if (!Firing) {
+		sf::Vector2f cannonOrigin = getShape().getOrigin();
+		sf::Clock shootClock;
+
+		for (int i = 0; i < 3; ++i) {
+			ball.setPosition(getPosition().x - cannonOrigin.x, getPosition().y - cannonOrigin.y);
+
+			ball.setDirection(m_direction);
+
+			Firing = true;
+
+
+			while (shootClock.getElapsedTime().asMilliseconds() < 100) {
+				sf::sleep(sf::milliseconds(10));
+			}
+
+			shootClock.restart();
+		}
+		Firing = false;
+	}
+}
+
+
 void Canon::stopFiring() {
 	Firing = false;
 }

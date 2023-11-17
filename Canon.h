@@ -11,8 +11,10 @@ public:
     void moveTowardsMouse(sf::RenderWindow& window);
     bool isFiring() const;
     void shoot(Ball& ball);
+    void shootRightClick(Ball& ball);
     void stopFiring();
 private:
     bool Firing;
+    bool burstMode;
 };
 
